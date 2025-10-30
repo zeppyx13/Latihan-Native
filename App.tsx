@@ -1,15 +1,12 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import React from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-const dummyOrderItems = Array(5).fill(0);
-const dummyFoodItems = Array(5).fill(0);
-
-export default function App() {
+const App = () => {
   return (
     <SafeAreaProvider>
-      <ScrollView>
-        <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
 
           {/* Header */}
           <View style={styles.header}>
@@ -26,17 +23,12 @@ export default function App() {
 
           {/* Order Section */}
           <View style={styles.section}>
-            <Text style={styles.title}>Order Section</Text>
-
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.horizontalList}
-            >
-              {dummyOrderItems.map((_, idx) => (
-                <View key={idx} style={styles.orderCard}>
-                  <View style={styles.orderImage} />
-                  <View style={styles.orderDesc} />
+            <Text style={styles.sectionTitle}>Order Section</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {[...Array(5)].map((_, i) => (
+                <View key={i} style={styles.orderItem}>
+                  <View style={styles.orderItemImage} />
+                  <View style={styles.orderItemDesc} />
                 </View>
               ))}
             </ScrollView>
@@ -44,111 +36,125 @@ export default function App() {
 
           {/* Favorite Section */}
           <View style={styles.section}>
-            <Text style={styles.title}>Favorite Section</Text>
-            <View style={styles.banner} />
+            <Text style={styles.sectionTitle}>Favorite Section</Text>
+            <View style={styles.bannerContainer} />
           </View>
 
           {/* Food Section */}
           <View style={styles.section}>
-            <Text style={styles.title}>Food Section</Text>
-
-            {dummyFoodItems.map((_, idx) => (
-              <View key={idx} style={styles.orderCard}>
-                <View style={styles.orderImage} />
-                <View style={styles.orderDesc} />
+            <Text style={styles.sectionTitle}>Food Section</Text>
+            {[...Array(5)].map((_, i) => (
+              <View key={i} style={styles.foodItem}>
+                <View style={styles.foodItemImage} />
+                <View style={styles.foodItemDesc} />
               </View>
             ))}
           </View>
 
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#1E293B",
+    backgroundColor: '#374151',
   },
-
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#0F172A",
-    marginBottom: 10,
-  },
-
   header: {
-    height: 160,
-    backgroundColor: "#D62828",
-    paddingLeft: 10,
-    justifyContent: "center",
+    height: 100,
+    backgroundColor: '#374151',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    padding: 20,
   },
   brandContainer: {
     width: 80,
-    height: 80,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 100,
+    height: '100%',
+    backgroundColor: '#E5E7EB',
   },
-
   navigation: {
-    height: 140,
-    backgroundColor: "#FDE68A",
+    backgroundColor: '#E5E7EB',
     padding: 20,
-    justifyContent: "center",
+    justifyContent: 'center',
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
   },
   navItem: {
     width: 90,
     height: 90,
-    backgroundColor: "#BA68C8",
+    backgroundColor: '#9CA3AF',
+    justifyContent: 'space-between',
+    borderRadius: 8,
   },
   navImage: {
     flex: 1,
-    backgroundColor: "#FF8A80",
+    backgroundColor: '#6B7280',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   },
   navLabel: {
     height: 22,
-    backgroundColor: "#1D4ED8",
+    backgroundColor: '#374151',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
-
   section: {
-    backgroundColor: "#FDE68A",
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    backgroundColor: '#F3F4F6',
+    paddingVertical: 15,
+    paddingHorizontal: 15,
   },
-
-  horizontalList: {
-    flexDirection: "row",
-    gap: 15,
+  sectionTitle: {
+    marginBottom: 10,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#111827',
   },
-
-  orderCard: {
-    flexDirection: "row",
-    backgroundColor: "teal",
+  orderItem: {
+    flexDirection: 'row',
+    backgroundColor: '#D1D5DB',
     padding: 10,
-    marginBottom: 8,
-    width: 190,
-    borderRadius: 10,
-  },
-  orderImage: {
-    width: 60,
-    height: 60,
-    backgroundColor: "#F87171",
+    marginRight: 15,
     borderRadius: 8,
   },
-  orderDesc: {
+  orderItemImage: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#6B7280',
+    borderRadius: 8,
+  },
+  orderItemDesc: {
     flex: 1,
-    backgroundColor: "#22C55E",
+    backgroundColor: '#9CA3AF',
     marginLeft: 10,
     borderRadius: 8,
   },
-
-  banner: {
-    width: "100%",
-    height: 90,
-    backgroundColor: "#3B82F6",
-    borderRadius: 15,
+  bannerContainer: {
+    height: 180,
+    width: '100%',
+    borderRadius: 20,
+    backgroundColor: '#9CA3AF',
+  },
+  foodItem: {
+    flexDirection: 'row',
+    backgroundColor: '#D1D5DB',
+    padding: 10,
+    borderRadius: 8,
     marginBottom: 10,
   },
+  foodItemImage: {
+    width: 60,
+    height: 60,
+    backgroundColor: '#6B7280',
+    borderRadius: 8,
+  },
+  foodItemDesc: {
+    flex: 1,
+    backgroundColor: '#9CA3AF',
+    marginLeft: 10,
+    borderRadius: 8,
+  },
 });
+
+export default App;
