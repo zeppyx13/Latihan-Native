@@ -1,151 +1,154 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { ScrollView } from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-const App = () => {
+const dummyOrderItems = Array(5).fill(0);
+const dummyFoodItems = Array(5).fill(0);
+
+export default function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <SafeAreaView style={styles.container}>
 
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.brandContainer} />
-        </View>
-
-        {/* Navigation (1 kotak pink + 1 label) */}
-        <View style={styles.navigation}>
-          <View style={styles.navitem}>
-            <View style={styles.navimage} />
-            <View style={styles.navlabel} />
+          {/* Header */}
+          <View style={styles.header}>
+            <View style={styles.brandContainer} />
           </View>
-        </View>
 
-        {/* Order section */}
-        <View style={styles.order}>
-          <Text>Order Section</Text>
-          <ScrollView style={{ flexDirection: 'row', gap: 20 }} horizontal={true}>
-            <View style={styles.orderItems}>
-              <View style={styles.orderItemImage} />
-              <View style={styles.orderItemDesc} />
+          {/* Navigation */}
+          <View style={styles.navigation}>
+            <View style={styles.navItem}>
+              <View style={styles.navImage} />
+              <View style={styles.navLabel} />
             </View>
-            <View style={styles.orderItems}>
-              <View style={styles.orderItemImage} />
-              <View style={styles.orderItemDesc} />
-            </View>
-            <View style={styles.orderItems}>
-              <View style={styles.orderItemImage} />
-              <View style={styles.orderItemDesc} />
-            </View>
-            <View style={styles.orderItems}>
-              <View style={styles.orderItemImage} />
-              <View style={styles.orderItemDesc} />
-            </View>
-            <View style={styles.orderItems}>
-              <View style={styles.orderItemImage} />
-              <View style={styles.orderItemDesc} />
-            </View>
-          </ScrollView>
-        </View>
+          </View>
 
-        {/* Favorite section */}
-        <View style={styles.favorite}>
-          <Text style={{ marginBottom: 10 }}>Favorite Section</Text>
-          <ScrollView contentContainerStyle={{ flexDirection: 'row', gap: 20 }} horizontal={true}>
+          {/* Order Section */}
+          <View style={styles.section}>
+            <Text style={styles.title}>Order Section</Text>
 
-            <View style={styles.bannerContainer} />
-          </ScrollView>
-        </View>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalList}
+            >
+              {dummyOrderItems.map((_, idx) => (
+                <View key={idx} style={styles.orderCard}>
+                  <View style={styles.orderImage} />
+                  <View style={styles.orderDesc} />
+                </View>
+              ))}
+            </ScrollView>
+          </View>
 
-        {/* Food section */}
-        <View style={styles.food} />
+          {/* Favorite Section */}
+          <View style={styles.section}>
+            <Text style={styles.title}>Favorite Section</Text>
+            <View style={styles.banner} />
+          </View>
 
-      </SafeAreaView >
-    </SafeAreaProvider >
+          {/* Food Section */}
+          <View style={styles.section}>
+            <Text style={styles.title}>Food Section</Text>
+
+            {dummyFoodItems.map((_, idx) => (
+              <View key={idx} style={styles.orderCard}>
+                <View style={styles.orderImage} />
+                <View style={styles.orderDesc} />
+              </View>
+            ))}
+          </View>
+
+        </SafeAreaView>
+      </ScrollView>
+    </SafeAreaProvider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E293B',
+    backgroundColor: "#1E293B",
+  },
+
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#0F172A",
+    marginBottom: 10,
   },
 
   header: {
-    height: 120,
-    backgroundColor: '#D62828',
-    padding: 10,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    height: 160,
+    backgroundColor: "#D62828",
+    paddingLeft: 10,
+    justifyContent: "center",
   },
   brandContainer: {
     width: 80,
-    height: '80%',
-    backgroundColor: '#FFFFFF',
+    height: 80,
+    backgroundColor: "#FFFFFF",
     borderRadius: 100,
   },
+
   navigation: {
     height: 140,
-    backgroundColor: '#FDE68A',
+    backgroundColor: "#FDE68A",
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  navitem: {
+  navItem: {
     width: 90,
     height: 90,
-    backgroundColor: '#BA68C8',
+    backgroundColor: "#BA68C8",
   },
-  navimage: {
+  navImage: {
     flex: 1,
-    backgroundColor: '#FF8A80',
+    backgroundColor: "#FF8A80",
   },
-  navlabel: {
+  navLabel: {
     height: 22,
-    backgroundColor: '#1D4ED8',
+    backgroundColor: "#1D4ED8",
   },
 
-  order: {
-    height: 150,
-    backgroundColor: '#FDE68A',
-    padding: 10,
+  section: {
+    backgroundColor: "#FDE68A",
+    paddingVertical: 10,
+    paddingHorizontal: 12,
   },
-  orderItems: {
-    flexDirection: 'row',
-    backgroundColor: 'teal',
-    padding: 10,
+
+  horizontalList: {
+    flexDirection: "row",
+    gap: 15,
   },
-  orderItemImage: {
+
+  orderCard: {
+    flexDirection: "row",
+    backgroundColor: "teal",
+    padding: 10,
+    marginBottom: 8,
+    width: 190,
+    borderRadius: 10,
+  },
+  orderImage: {
     width: 60,
     height: 60,
-    backgroundColor: '#F87171',
+    backgroundColor: "#F87171",
+    borderRadius: 8,
   },
-  orderItemDesc: {
+  orderDesc: {
     flex: 1,
-    backgroundColor: '#22C55E',
+    backgroundColor: "#22C55E",
+    marginLeft: 10,
+    borderRadius: 8,
   },
 
-  favorite: {
-    height: 120,
-    backgroundColor: '#FDE68A',
-    padding: 15,
-  },
-  bannerContainer: {
-    width: 200,
-    height: '100%',
-    backgroundColor: '#3B82F6',
+  banner: {
+    width: "100%",
+    height: 90,
+    backgroundColor: "#3B82F6",
+    borderRadius: 15,
     marginBottom: 10,
   },
-  favoriteItem: {
-    flex: 1,
-    backgroundColor: '#B91C1C',
-  },
-  food: {
-    height: 200,
-    backgroundColor: '#334155',
-  },
 });
-
-export default App;
