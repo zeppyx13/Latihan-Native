@@ -15,10 +15,12 @@ const App = () => {
 
           {/* Navigation */}
           <View style={styles.navigation}>
-            <View style={styles.navItem}>
-              <View style={styles.navImage} />
-              <View style={styles.navLabel} />
-            </View>
+            {[...Array(6)].map((_, i) => (
+              <View key={i} style={styles.navItem}>
+                <View style={styles.navImage} />
+                <View style={styles.navLabel} />
+              </View>
+            ))}
           </View>
 
           {/* Order Section */}
@@ -63,23 +65,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#374151',
   },
   header: {
-    height: 100,
+    height: 80,
     backgroundColor: '#374151',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    padding: 20,
+    margin: 10,
   },
   brandContainer: {
     width: 80,
     height: '100%',
     backgroundColor: '#E5E7EB',
+    borderRadius: 100,
   },
   navigation: {
     backgroundColor: '#E5E7EB',
     padding: 20,
-    justifyContent: 'center',
     borderTopStartRadius: 20,
     borderTopEndRadius: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
   navItem: {
     width: 90,
@@ -87,6 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#9CA3AF',
     justifyContent: 'space-between',
     borderRadius: 8,
+    marginBottom: 15,
   },
   navImage: {
     flex: 1,
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   sectionTitle: {
-    marginBottom: 10,
+    marginBottom: 20,
     fontSize: 16,
     fontWeight: '600',
     color: '#111827',
