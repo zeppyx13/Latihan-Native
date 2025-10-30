@@ -12,6 +12,15 @@ const icons = [
   "person-outline"
 ] as const;
 
+const name = [
+  "Cafe",
+  "Pizza",
+  "Fast Food",
+  "Favorite",
+  "Location",
+  "Profile"
+] as const;
+
 const App = () => {
   return (
     <SafeAreaProvider>
@@ -29,7 +38,7 @@ const App = () => {
               <View key={i} style={styles.navItem}>
                 {/* ICON GANTI NAVIMAGE */}
                 <Ionicons name={icon} size={50} color="#000000ff" />
-                <View style={styles.navLabel} />
+                <Text style={styles.navName}>{name[i]}</Text>
               </View>
             ))}
           </View>
@@ -83,7 +92,11 @@ const styles = StyleSheet.create({
   brandContainer: {
     width: 80, height: '100%', backgroundColor: '#E5E7EB', borderRadius: 100,
   },
-
+  navName: {
+    fontSize: 12,
+    fontWeight: '500',
+    color: '#111827',
+  },
   navigation: {
     backgroundColor: '#E5E7EB',
     padding: 20,
