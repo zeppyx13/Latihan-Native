@@ -13,13 +13,21 @@ const HomeScreen = () => {
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
+
                     {/* Header */}
                     <View style={styles.header}>
                         <Brand />
                     </View>
 
                     {/* Navigation */}
-                    <Navbar />
+                    <View style={styles.navigation}>
+                        <Navbar icon="home-outline" text="Home" />
+                        <Navbar icon="cafe-outline" text="Cafe" />
+                        <Navbar icon="fast-food-outline" text="Fast Food" />
+                        <Navbar icon="heart-outline" text="Favorite" />
+                        <Navbar icon="location-outline" text="Location" />
+                        <Navbar icon="person-outline" text="Profile" />
+                    </View>
 
                     {/* Order Section */}
                     <Order />
@@ -29,6 +37,7 @@ const HomeScreen = () => {
 
                     {/* Food Section */}
                     <Food />
+
                 </ScrollView>
             </SafeAreaView>
         </SafeAreaProvider>
