@@ -21,12 +21,12 @@ const HomeScreen = () => {
 
                     {/* Navigation */}
                     <View style={styles.navigation}>
-                        <Navbar icon="home-outline" text="Home" />
-                        <Navbar icon="cafe-outline" text="Cafe" />
-                        <Navbar icon="fast-food-outline" text="Fast Food" />
-                        <Navbar icon="heart-outline" text="Favorite" />
-                        <Navbar icon="location-outline" text="Location" />
-                        <Navbar icon="person-outline" text="Profile" />
+                        <Navbar icon="home-outline" text="Home" target="Home" />
+                        <Navbar icon="cafe-outline" text="Cafe" target="Cafe" />
+                        <Navbar icon="fast-food-outline" text="Fast Food" target="Food" />
+                        <Navbar icon="heart-outline" text="Favorite" target="Favorite" />
+                        <Navbar icon="location-outline" text="Location" target="Location" />
+                        <Navbar icon="call-outline" text="Profile" target="Contact" />
                     </View>
 
                     {/* Order Section */}
